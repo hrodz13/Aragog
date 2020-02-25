@@ -1,0 +1,7 @@
+azure-functions
+azure-keyvault
+azure-identity
+azure-storage-blob
+beautifulsoup4
+django
+requests
