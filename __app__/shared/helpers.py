@@ -20,7 +20,7 @@ def download_blob(container_name, blob_name):
 def upload_blob(container_name, blob_name, blob_data):
     blob = BlobClient(env.REPORTS_STGACCT_URI, container_name, blob_name, credential=CREDENTIALS)
     response = blob.upload_blob(blob_data, overwrite=True)
-    logging.debug(response)
+    return response
 
 def create_container(container_name):
     container = ContainerClient(env.REPORTS_STGACCT_URI, container_name, credential=CREDENTIALS)

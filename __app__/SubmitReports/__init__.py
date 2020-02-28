@@ -11,9 +11,15 @@ def main(mytimer: func.TimerRequest) -> None:
     logging.info('Timer triggered function ran at %s', utc_timestamp)
 
     # Start
+    logging.info(config.CANNED_JOBS)
     for canned_job in config.CANNED_JOBS:
-        logging.info(canned_job.get('password'))
-        client = rl_client.RLClient(canned_job.get('username'), canned_job.get('password'))
+        canned_job_username = canned_job.get('username')
+        logging.info(f"Logging in '{canned_job_username}'...'")
+        client = rl_client.RLClient(canned_job_username, canned_job.get('password'))
+        logging.info('Done.')
+
         reports = client.get_reports(canned_job.get('folder'))
         for report in reports:
+            logging.info("'Submitting report '{}'...")
             client.submit_report(report.get('id'))
+            logging.info('Done.')
